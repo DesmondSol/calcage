@@ -50,41 +50,43 @@ class _DaysLivedCalculatorState extends State<DaysLivedCalculator> {
       appBar: AppBar(
         title: Text('Days Lived Calculator'),
       ),
-      body: Column(
-        children: [
-          // Show the birth date
-          Text('Birth Date: ${_birthDate.toString()}'),
+      body: Center(
+        child: Column(
+          children: [
+            // Show the birth date
+            Text('Birth Date: ${_birthDate.toString()}'),
 
-          // Show the current date
-          Text('Current Date: ${_currentDate.toString()}'),
+            // Show the current date
+            Text('Current Date: ${_currentDate.toString()}'),
 
-          // Show the number of days lived
-          Text('Days Lived: ${_calculateDaysLived()}'),
+            // Show the number of days lived
+            Text('Days Lived: ${_calculateDaysLived()}'),
 
-          // A button to change the birth date
-          Container(
-            child: OutlinedButton(
-              child: Text('Change Birth Date'),
-              onPressed: () async {
-                // Show a date picker and wait for the user to select a date
-                DateTime? newBirthDate = await showDatePicker(
-                  context: context,
-                  initialDate: _birthDate,
-                  firstDate: DateTime(1900),
-                  lastDate: _currentDate,
-                );
+            // A button to change the birth date
+            Container(
+              child: OutlinedButton(
+                child: Text('Change Birth Date'),
+                onPressed: () async {
+                  // Show a date picker and wait for the user to select a date
+                  DateTime? newBirthDate = await showDatePicker(
+                    context: context,
+                    initialDate: _birthDate,
+                    firstDate: DateTime(1900),
+                    lastDate: _currentDate,
+                  );
 
-                // If the user selected a new birth date,
-                // update the birth date and refresh the UI
-                if (newBirthDate != null) {
-                  setState(() {
-                    _birthDate = newBirthDate;
-                  });
-                }
-              },
+                  // If the user selected a new birth date,
+                  // update the birth date and refresh the UI
+                  if (newBirthDate != null) {
+                    setState(() {
+                      _birthDate = newBirthDate;
+                    });
+                  }
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
